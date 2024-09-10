@@ -1,0 +1,27 @@
+.modal-wrapper{
+  position: fixed;
+  top:0;
+  bottom: 0;
+  left:0;
+  right:0;
+  background-color: rgba(189 ,189, 189,0.9)
+}
+
+.modal-container{
+  position:fixed;
+  top:50%;
+  left:50%;
+  max-width: 400px;
+  transform: translate(-50%,-50%);
+  background-color: #fff;
+  border:1px solid red;
+  border-radius: 15px;
+  padding: 5px;
+  z-index: 1000;
+}
+.btn {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
