@@ -1,0 +1,49 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  /* Header & Footer: full-width */
+  header,
+  footer {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    width: 100%;
+  }
+  
+  /* Middle section: row layout */
+  .columns {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  /* Left navigation: fixed width */
+  nav {
+    width: 200px;
+    background-color: #f4f4f4;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  /* Main content: takes 2 parts */
+  main {
+    flex: 2;
+    padding: 1rem;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
+  
+  /* Sidebar: takes 1 part */
+  aside {
+    flex: 1;
+    padding: 1rem;
+    background-color: #eaeaea;
+    box-sizing: border-box;
+  }
+  
+  
