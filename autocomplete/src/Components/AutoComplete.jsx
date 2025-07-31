@@ -39,7 +39,7 @@
 /*-----------------from Akshay Saini ----------------*/
 
 import { useEffect, useState } from "react";
-import "./styles.css";
+import "./Autostyle.css"
 
 export default function App() {
   const [input, setInput] = useState("");

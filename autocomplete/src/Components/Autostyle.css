@@ -1,8 +1,4 @@
-body{
-    /* background-color: aqua; */
-}
-
-.input_box {
+/* .input_box {
     width: 350px;
     padding:5px;
     border-radius: 5px;
@@ -33,10 +29,10 @@ body{
 }
 .receipe-lists span:hover {
     background-color: #f0f0f0;
-}
+}  */
 
 /*---------------------From Akshay Saini ---------------------*/
-/* .App {
+.App {
     font-family: sans-serif;
     text-align: center;
   }
@@ -59,4 +55,4 @@ body{
   }
   .result:hover {
     background-color: beige;
-  } */
+  }
