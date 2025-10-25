@@ -1,33 +1,32 @@
 import React from "react";
 import "./styles.css";
 
-const Step1 = ({ formData, nextStep,handleChange,error }) => {
+const Step1 = ({ formData, handleChange, nextStep, error }) => {
   return (
-    <div className="main-container">
-      <div className="user-container">
-        <h3>UserInfo</h3>
+    <div className="user-container">
+      <div className="form-container">
+        <h3>User Info</h3>
         <input
           type="text"
           name="name"
-          placeholder="Enter Your Name..."
           value={formData.name}
           onChange={handleChange}
+          placeholder="Enter Your Name"
         />
-        {error.name & <p className="error">{error.name}</p>}
+        {error.name && <span className="error">{error.name}</span>}
         <input
           type="email"
-          placeholder="Emter your Email..."
           name="email"
           value={formData.email}
           onChange={handleChange}
+          placeholder="Enter Your Email"
         />
-        {error.email & <p className="error">{error.email}</p>}
-        <span className="btn-container">
+        {error.email && <span className="error">{error.name}</span>}
+        <div>
           <button onClick={nextStep}>Next</button>
-        </span>
+        </div>
       </div>
     </div>
   );
 };
-
 export default Step1;

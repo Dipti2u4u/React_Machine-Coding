@@ -102,3 +102,62 @@ function CustomMultiSelect() {
 
 export default CustomMultiSelect;
 
+/*------------------------Type-2 -------------------*/
+// import React,{useState,useEffect} from "react";
+// import axios from 'axios'
+
+// const MultiDropdown = ({Fruits}) => {
+//     const [inputValue,setInputValue] = useState("")
+//     const [recipes,setRecipes] = useState([])
+//     const [selectedItems,setSelectedItems] = useState([])
+//     const fetchData = async()=>{
+//         const response = await axios.get(`https://dummyjson.com/recipes/search?q=${inputValue}`)
+//         setRecipes(response.data.recipes)
+//     }
+//     useEffect(()=>{
+//         if(inputValue.trim() === ""){
+//             setRecipes([])
+//             return;
+//         }
+//         fetchData()
+//     },[inputValue])
+//     const handleSelect = (item)=>{
+//         if(selectedItems.includes() !== item.name){
+//             setSelectedItems([...selectedItems,item.name])
+//         }
+//         setInputValue("");
+//         setRecipes([]);
+//     }
+//     const handleRemove = (item)=>{
+//         setSelectedItems(selectedItems.filter((i) => i !== item));
+//     }
+
+//     return (
+//         <div className="main-container">
+//             <h3>MultiSelect Dropdown</h3>
+//             <div className='sub-container'>
+//                 <div className='input-container'>
+//                     {selectedItems.map((item,index)=>(
+//                         <span key={index} onClick={()=>handleRemove(item)}>{item} ✕</span>
+//                     ))}
+//                     <input type="text" 
+//                     placeholder='Choose an Item ...' 
+//                     value={inputValue} 
+//                     onChange={(e)=>setInputValue(e.target.value)}
+//                     />
+//                     <span className='dropdown-marker'>{'\u25BC'}</span>
+//                 </div>
+//                {recipes.length > 0 &&
+//                  <div className='recipes-container'>
+//                  {recipes.map((item)=>(
+//                      <div key={item.id} className='recipes' onClick={()=>handleSelect(item)}>
+//                          {item.name}
+//                      </div>
+//                  ))}
+//                  </div>
+//                }
+//             </div>
+//         </div>
+//     )
+// }
+// export default MultiDropdown
