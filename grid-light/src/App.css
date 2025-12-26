@@ -1,0 +1,24 @@
+.App {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  grid-gap: 10px;
+  justify-content: center;
+}
+
+.grid-cell {
+  width: 80px;
+  height: 80px;
+  background-color: gray;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.grid-cell.active {
+  background-color: green;
+}

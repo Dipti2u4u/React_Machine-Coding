@@ -1,144 +1,173 @@
-// import React, { useState, useEffect } from "react";
+// import React, { useEffect, useState } from "react";
 
 // export default function App() {
-//   const [text, setText] = useState("");
+//   const [inputValue, setInputValue] = useState("");
 //   const [charCount, setCharCount] = useState({});
 
+//   const handleChange = (e) => {
+//     setInputValue(e.target.value);
+//   };
+
 //   useEffect(() => {
-//     if (text === "") return;
-//     let newText = text.trim();
-//     let result = {};
+//     if (inputValue.trim() === "") return;
+//     let newText = inputValue.trim();
+//     let map = {};
 //     for (let char of newText) {
-//       if (result[char]) {
-//         result[char] += 1;
+//       if (!map[char]) {
+//         map[char] = 1;
 //       } else {
-//         result[char] = 1;
+//         map[char] += 1;
 //       }
 //     }
-//     setCharCount(result);
-//   }, [text]);
+//     setCharCount(map);
+//   }, [inputValue]);
+
 //   return (
 //     <div className="App">
-//       <h2>Character Frequency Counter</h2>
+//       <h2>Character Counter</h2>
 //       <textarea
-//         type="text"
-//         placeholder="Type anything..."
-//         value={text}
-//         onChange={(e) => setText(e.target.value)}
-//       ></textarea>
-//       <h3>Character Counts:</h3>
-//       <pre>{JSON.stringify(charCount)}</pre>
+//         placeholder="Type Something..."
+//         value={inputValue}
+//         onChange={handleChange}
+//       />
+//       <h3>Result</h3>
+//       {/* <p>{JSON.stringify(charCount)}</p> */}
+//       {Object.keys(charCount).length === 0 ? (
+//         <p>No Charcters Yet...</p>
+//       ) : (
+//         <ul>
+//           {Object.entries(charCount).map(([char, count]) => (
+//             <li key={char}>
+//               <strong>{char}</strong> : {count}
+//             </li>
+//           ))}
+//         </ul>
+//       )}
 //     </div>
 //   );
 // }
 
 
 
-/* --------------------------Optimized with useMemo ----------------*/
-import React, { useState, useMemo } from "react";
 
-function CharFrequencyCounter() {
-  const [text, setText] = useState("");
+//Character count Advanced
 
-  // useMemo to optimize performance (only re-calc when text changes)
-  const charCount = useMemo(() => {
-    const freq = {};
-    for (let char of text) {
-      if(freq[char]){
-        freq[char] += 1
-      }else{
-        freq[char] = 1
-      }
+import React, { useEffect, useState, useMemo } from "react";
+
+export default function App() {
+  const [inputValue, setInputValue] = useState("");
+  const [char, setChar] = useState({});
+
+  useEffect(() => {
+    const newValue = inputValue.toLowerCase().replace(/\s+/g, "");
+
+    let hashmap = {};
+
+    for (let item of newValue) {
+      hashmap[item] = (hashmap[item] || 0) + 1;
     }
-    return freq;
-  }, [text]);
+
+    setChar(hashmap);
+  }, [inputValue]);
+
+  // 2️⃣ total characters
+  const totalCharacters = useMemo(() => {
+    return Object.values(char).reduce((sum, val) => sum + val, 0);
+  }, [char]);
+
+  // 3️⃣ sorted characters (by frequency only)
+  const sortedCharacters = useMemo(() => {
+    return Object.entries(char).sort(([a, countA], [b, countB]) => {
+      if (countB !== countA) return countB - countA; // highest first
+      return a.localeCompare(b); // tie-break
+    });
+  }, [char]);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Real-time Character Frequency Counter</h2>
+    <div className="App">
+      <h3>Character Counting</h3>
 
       <textarea
-        rows="4"
-        cols="50"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
         placeholder="Type something..."
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
       />
 
-      <h3>Character Counts:</h3>
-      <pre>{JSON.stringify(charCount, null, 2)}</pre>
+      <h4>Total Characters (excluding spaces): {totalCharacters}</h4>
+
+      <h3>Character Frequency</h3>
+
+      <ul style={{ listStyle: "none", padding: 0 }}>
+        {sortedCharacters.map(([character, count]) => (
+          <li key={character} style={{ marginBottom: "8px" }}>
+            <strong>{character}</strong> : {count}
+            <div
+              style={{
+                height: "8px",
+                width: `${count * 20}px`,
+                background: "#4caf50",
+                marginTop: "4px",
+                borderRadius: "4px",
+              }}
+            />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
 
-export default CharFrequencyCounter;
 
 
 
 
 
 
-// import "./styles.css";
-// import React, { useState, useEffect } from "react";
+// import React, { useEffect, useState } from "react";
 
 // export default function App() {
-//   const [text, setText] = useState("");
-//   const [result, setResult] = useState("");
+//   const [inputValue, setInputValue] = useState("");
+//   const [text, setText] = useState({});
+//   const [sortedWords, setSortedWords] = useState([]);
 
-//   // useEffect(() => {
-//   //   const charCount = () => {
-//   //     let item = {};
-//   //     for (let char of text.trim()) {
-//   //       if (char !== "") {
-//   //         if (!item[char]) {
-//   //           item[char] = 1;
-//   //         } else {
-//   //           item[char] += 1;
-//   //         }
-//   //       }
-//   //     }
-//   //     setResult(item);
-//   //   };
-//   //   charCount();
-//   // }, [text]);
-
-//   useEffect(() => {
-//     const wordCount = () => {
-//       const item = {};
-//       const words = text.trim().split(/\s+/); // split text into words
-
-//       for (let word of words) {
-//         if (word !== "") {
-//           // optional: make it case-insensitive
-//           word = word.toLowerCase();
-
-//           if (!item[word]) {
-//             item[word] = 1;
-//           } else {
-//             item[word] += 1;
-//           }
-//         }
+//   function wordCounter() {
+//     if (inputValue.trim() === "") {
+//       setText({});
+//       setSortedWords([]);
+//       return;
+//     }
+//     let words = inputValue.trim().toLowerCase().split(/\s+/);
+//     let map = {};
+//     for (let word of words) {
+//       if (!map[word]) {
+//         map[word] = 1;
+//       } else {
+//         map[word] += 1;
 //       }
-//       setResult(item);
-//     };
+//     }
+//     //convert to array for sorting
+//     let sorted = Object.entries(map).sort((a, b) => b[1] - a[1]);
+//     setText(map);
+//     setSortedWords(sorted);
+//   }
+//   useEffect(() => {
+//     wordCounter();
+//   }, [inputValue]);
 
-//     wordCount();
-//   }, [text]);
 //   return (
 //     <div className="App">
-//       <h2>Character Count</h2>
-//       <div className="main-container">
-//         <textarea
-//           placeholder="Type Something ..."
-//           value={text}
-//           onChange={(e) => setText(e.target.value)}
-//         ></textarea>
-//         <div className="result-container">
-//           <h5>Result : </h5>
-//           <span>{JSON.stringify(result, null, 2)}</span>
-//         </div>
-//       </div>
+//       <h3>Word Counter</h3>
+//       <textarea
+//         placeholder="Type Something..."
+//         value={inputValue}
+//         onChange={(e) => setInputValue(e.target.value)}
+//       />
+//       <h4>Result</h4>
+//       {sortedWords.map(([word, count]) => (
+//         <p key={word}>
+//           {word} : {count}
+//         </p>
+//       ))}
 //     </div>
 //   );
 // }
-

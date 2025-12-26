@@ -1,0 +1,15 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 60px);
+  gap: 10px;
+}
+.grid-cell {
+  width: 60px;
+  height: 60px;
+  background-color: grey;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.grid-cell.active {
+  background-color: green;
+}

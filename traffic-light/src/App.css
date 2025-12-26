@@ -1,0 +1,32 @@
+.light-container {
+  height: 200px;
+  width: 100px;
+  padding: 20px 10px;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 0 15px #444;
+}
+.circle {
+  height: 60px;
+  width: 60px;
+  background-color: #333;
+  border-radius: 50%;
+  margin: 7px auto;
+  display: flex;
+  flex-direction: column;
+}
+.circle.red-on {
+  background-color: #d52b1e;
+  opacity: 1;
+  box-shadow: 0 0 24px #d52b1e;
+}
+.circle.yellow-on {
+  background-color: #ffed00;
+  opacity: 1;
+  box-shadow: 0 0 24px #ffed00;
+}
+.circle.green-on {
+  background-color: #00bb2d;
+  opacity: 1;
+  box-shadow: 0 0 24px #00bb2d;
+}

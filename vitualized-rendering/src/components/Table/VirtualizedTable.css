@@ -1,0 +1,23 @@
+/* src/components/Table/VirtualizedTable.css */
+.table-container {
+  height: 500px;        /* viewport height */
+  overflow-y: auto;     /* vertical scroll */
+  border: 1px solid #ccc;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f4f4f4;
+  position: sticky;
+  top: 0;               /* Keep header fixed while scrolling */
+}
